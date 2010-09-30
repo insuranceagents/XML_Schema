@@ -1,0 +1,637 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="lead_renters" type="lead_renters_record"/>
+	<xs:complexType name="lead_renters_record">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="distribution" type="distribution_type"/>
+			<xs:element name="addr" type="addr_type"/>
+			<xs:element name="bathrooms" type="bathrooms_type"/>
+			<xs:element name="bedrooms" type="bedrooms_type"/>
+			<xs:element name="city" type="city_type"/>
+			<xs:element minOccurs="0" name="claim_0_amt" type="xs:decimal"/>
+			<xs:element minOccurs="0" name="claim_0_month" type="claim_month"/>
+			<xs:element minOccurs="0" name="claim_0_type" type="claim_type"/>
+			<xs:element minOccurs="0" name="claim_0_year" type="claim_year"/>
+			<xs:element minOccurs="0" name="claim_1_amt" type="xs:decimal"/>
+			<xs:element minOccurs="0" name="claim_1_month" type="claim_month"/>
+			<xs:element minOccurs="0" name="claim_1_type" type="claim_type"/>
+			<xs:element minOccurs="0" name="claim_1_year" type="claim_year"/>
+			<xs:element minOccurs="0" name="claim_2_amt" type="xs:decimal"/>
+			<xs:element minOccurs="0" name="claim_2_month" type="claim_month"/>
+			<xs:element minOccurs="0" name="claim_2_type" type="claim_type"/>
+			<xs:element minOccurs="0" name="claim_2_year" type="claim_year"/>
+			<xs:element minOccurs="0" name="claim_3_amt" type="xs:decimal"/>
+			<xs:element minOccurs="0" name="claim_3_month" type="claim_month"/>
+			<xs:element minOccurs="0" name="claim_3_type" type="claim_type"/>
+			<xs:element minOccurs="0" name="claim_3_year" type="claim_year"/>
+			<xs:element name="claims" type="claims_type"/>
+			<xs:element name="coverage_amt" type="xs:decimal"/>
+			<xs:element name="credit_history" type="credit_history_type"/>
+			<xs:element name="deductible" type="deductible_type"/>
+			<xs:element name="dob" type="xs:date"/>
+			<xs:element name="dwelling" type="dwelling_type"/>
+			<xs:element name="email" type="email_type"/>
+			<xs:element name="fireplaces" type="fireplaces_type"/>
+			<xs:element name="fname" type="name_type"/>
+			<xs:element name="foundation" type="foundation_type"/>
+			<xs:element name="garage" type="garage_type"/>
+			<xs:element name="how_long_ins" type="how_long_ins_type"/>
+			<xs:element name="insco" type="insco_type"/>
+			<xs:element name="insured" type="xs:boolean"/>
+			<xs:element name="liability" type="liability_type"/>
+			<xs:element name="lname" type="name_type"/>
+			<xs:element name="phone" type="phone_type"/>
+			<xs:element minOccurs="0" name="phone2" type="phone_type"/>
+			<xs:element minOccurs="0" name="policy_expire" type="xs:date"/>
+			<xs:element name="property_addr" type="property_addr_type"/>
+			<xs:element name="property_city" type="property_city_type"/>
+			<xs:element name="property_state" type="state_type"/>
+			<xs:element name="property_zip" type="zip_type"/>
+			<xs:element name="security" type="security_type"/>
+			<xs:element name="squarefeet" type="squarefeet_type"/>
+			<xs:element name="state" type="state_type"/>
+			<xs:element name="stories" type="stories_type"/>
+			<xs:element name="year_built" type="year_built_type"/>
+			<xs:element name="years_prev" type="years_prev_type"/>
+			<xs:element name="years_resident" type="years_resident_type"/>
+			<xs:element name="zip" type="zip_type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distribution_base">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="directive" type="directive_type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="distribution_type">
+		<xs:complexContent>
+			<xs:extension base="distribution_base">
+				<xs:attribute name="sold" use="optional">
+					<xs:simpleType>
+						<xs:restriction base="xs:integer"/>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="directive_type">
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="include"/>
+					<xs:enumeration value="exclude"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="agent" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="33"/>
+					<xs:minLength value="33"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="company" type="insco_type" use="optional"/>
+	</xs:complexType>
+	<xs:simpleType name="email_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="insco_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="(Not Listed)"/>
+			<xs:enumeration value="AAA"/>
+			<xs:enumeration value="AETNA"/>
+			<xs:enumeration value="AFLAC"/>
+			<xs:enumeration value="AIG / American General"/>
+			<xs:enumeration value="AIU Insurance"/>
+			<xs:enumeration value="Allied"/>
+			<xs:enumeration value="Allstate"/>
+			<xs:enumeration value="American Alliance Insurance"/>
+			<xs:enumeration value="American Automobile Insurance"/>
+			<xs:enumeration value="American Casualty"/>
+			<xs:enumeration value="American Deposit Insurance"/>
+			<xs:enumeration value="American Direct Business Insurance"/>
+			<xs:enumeration value="American Empire Insurance"/>
+			<xs:enumeration value="American Family"/>
+			<xs:enumeration value="American Financial"/>
+			<xs:enumeration value="American Home Assurance"/>
+			<xs:enumeration value="American Insurance"/>
+			<xs:enumeration value="American International Insurance"/>
+			<xs:enumeration value="American Manufacturers"/>
+			<xs:enumeration value="American Mayflower Insurance"/>
+			<xs:enumeration value="American Motorists Insurance"/>
+			<xs:enumeration value="American National"/>
+			<xs:enumeration value="American Premier Insurance"/>
+			<xs:enumeration value="American Protection Insurance"/>
+			<xs:enumeration value="American Republic"/>
+			<xs:enumeration value="American Savers Plan"/>
+			<xs:enumeration value="American Service Insurance"/>
+			<xs:enumeration value="American Skyline Insurance"/>
+			<xs:enumeration value="American Spirit Insurance"/>
+			<xs:enumeration value="American Standard Insurance"/>
+			<xs:enumeration value="Amica"/>
+			<xs:enumeration value="Arbella"/>
+			<xs:enumeration value="Associated Indemnity"/>
+			<xs:enumeration value="Assurant"/>
+			<xs:enumeration value="Atlanta Casualty"/>
+			<xs:enumeration value="Atlantic Indemnity"/>
+			<xs:enumeration value="Auto Club Insurance Company"/>
+			<xs:enumeration value="Blue Cross / Blue Shield"/>
+			<xs:enumeration value="Cal Farm Insurance"/>
+			<xs:enumeration value="California State Automobile Association"/>
+			<xs:enumeration value="Chubb"/>
+			<xs:enumeration value="Clarendon American Insurance"/>
+			<xs:enumeration value="Clarendon National Insurance"/>
+			<xs:enumeration value="CNA"/>
+			<xs:enumeration value="Colonial Insurance"/>
+			<xs:enumeration value="Continental Casualty"/>
+			<xs:enumeration value="Continental Divide Insurance"/>
+			<xs:enumeration value="Continental Insurance"/>
+			<xs:enumeration value="Cotton States"/>
+			<xs:enumeration value="Country Insurance"/>
+			<xs:enumeration value="Dairyland Insurance"/>
+			<xs:enumeration value="Electric"/>
+			<xs:enumeration value="Erie"/>
+			<xs:enumeration value="Esurance"/>
+			<xs:enumeration value="Farm Bureau/Farm Family/Rural"/>
+			<xs:enumeration value="Farmers"/>
+			<xs:enumeration value="Farmers Union"/>
+			<xs:enumeration value="Firemans Fund"/>
+			<xs:enumeration value="Foremost"/>
+			<xs:enumeration value="GEICO"/>
+			<xs:enumeration value="GMAC"/>
+			<xs:enumeration value="Golden Rule"/>
+			<xs:enumeration value="Government Employees Insurance"/>
+			<xs:enumeration value="Guaranty National Insurance"/>
+			<xs:enumeration value="Hanover"/>
+			<xs:enumeration value="Health Plus of America"/>
+			<xs:enumeration value="HealthShare America"/>
+			<xs:enumeration value="Humana"/>
+			<xs:enumeration value="IFA Auto Insurance"/>
+			<xs:enumeration value="IGF Insurance"/>
+			<xs:enumeration value="Infinity Insurance"/>
+			<xs:enumeration value="Infinity National Insurance"/>
+			<xs:enumeration value="Infinity Select Insurance"/>
+			<xs:enumeration value="Integon"/>
+			<xs:enumeration value="John Hancock"/>
+			<xs:enumeration value="Kaiser Permanente"/>
+			<xs:enumeration value="Kemper"/>
+			<xs:enumeration value="Landmark American Insurance"/>
+			<xs:enumeration value="Leader National Insurance"/>
+			<xs:enumeration value="Leader Preferred Insurance"/>
+			<xs:enumeration value="Leader Specialty Insurance"/>
+			<xs:enumeration value="Liberty Insurance Corp"/>
+			<xs:enumeration value="Liberty Mutual"/>
+			<xs:enumeration value="Liberty National"/>
+			<xs:enumeration value="Liberty Northwest Insurance"/>
+			<xs:enumeration value="Lumbermens Mutual"/>
+			<xs:enumeration value="Maryland Casualty"/>
+			<xs:enumeration value="Mass Mutual"/>
+			<xs:enumeration value="Mega / Midwest"/>
+			<xs:enumeration value="Mercury"/>
+			<xs:enumeration value="MetLife Auto and Home"/>
+			<xs:enumeration value="Metropolitan"/>
+			<xs:enumeration value="Mid Century Insurance"/>
+			<xs:enumeration value="Mid-Continent Casualty"/>
+			<xs:enumeration value="Middlesex Insurance"/>
+			<xs:enumeration value="Midland National Life"/>
+			<xs:enumeration value="Mutual of New York"/>
+			<xs:enumeration value="Mutual Of Omaha"/>
+			<xs:enumeration value="National Ben Franklin Insurance"/>
+			<xs:enumeration value="National Casualty"/>
+			<xs:enumeration value="National Continental Insurance"/>
+			<xs:enumeration value="National Fire Insurance"/>
+			<xs:enumeration value="National Health Insurance"/>
+			<xs:enumeration value="National Indemnity"/>
+			<xs:enumeration value="National Union Fire Insurance"/>
+			<xs:enumeration value="Nationwide"/>
+			<xs:enumeration value="New York Life"/>
+			<xs:enumeration value="Northwestern Mutual Life"/>
+			<xs:enumeration value="Northwestern Pacific Indemnity"/>
+			<xs:enumeration value="Omni Insurance"/>
+			<xs:enumeration value="Orion Insurance"/>
+			<xs:enumeration value="Pacific Insurance"/>
+			<xs:enumeration value="Pafco General Insurance"/>
+			<xs:enumeration value="Patriot General Insurance"/>
+			<xs:enumeration value="Peak Property and Casualty Insurance"/>
+			<xs:enumeration value="PEMCO"/>
+			<xs:enumeration value="Pennsylvania life"/>
+			<xs:enumeration value="Progressive"/>
+			<xs:enumeration value="Prudential"/>
+			<xs:enumeration value="Reliance Insurance"/>
+			<xs:enumeration value="Republic Indemnity"/>
+			<xs:enumeration value="Response"/>
+			<xs:enumeration value="SAFECO"/>
+			<xs:enumeration value="Safeway Insurance"/>
+			<xs:enumeration value="Security Insurance"/>
+			<xs:enumeration value="Sentinel Insurance"/>
+			<xs:enumeration value="Sentry"/>
+			<xs:enumeration value="Shelter"/>
+			<xs:enumeration value="St. Paul"/>
+			<xs:enumeration value="Standard Fire Insurance Company"/>
+			<xs:enumeration value="State and County Mutual Fire Insurance"/>
+			<xs:enumeration value="State Farm"/>
+			<xs:enumeration value="State National Insurance"/>
+			<xs:enumeration value="Superior American Insurance"/>
+			<xs:enumeration value="Superior Guaranty Insurance"/>
+			<xs:enumeration value="Superior Insurance"/>
+			<xs:enumeration value="The Ahbe Group"/>
+			<xs:enumeration value="The Hartford"/>
+			<xs:enumeration value="TICO Insurance"/>
+			<xs:enumeration value="TIG Countrywide Insurance"/>
+			<xs:enumeration value="Travelers"/>
+			<xs:enumeration value="Tri-State Consumer Insurance"/>
+			<xs:enumeration value="Twin City Fire Insurance"/>
+			<xs:enumeration value="UniCare"/>
+			<xs:enumeration value="United American/Farm and Ranch"/>
+			<xs:enumeration value="United Pacific Insurance"/>
+			<xs:enumeration value="United Security"/>
+			<xs:enumeration value="United Services Automobile Association"/>
+			<xs:enumeration value="Unitrin Direct"/>
+			<xs:enumeration value="Universal Underwriters Insurance"/>
+			<xs:enumeration value="US Financial"/>
+			<xs:enumeration value="USAA"/>
+			<xs:enumeration value="USF and G"/>
+			<xs:enumeration value="Viking Insurance"/>
+			<xs:enumeration value="Windsor Insurance"/>
+			<xs:enumeration value="Woodlands Financial Group"/>
+			<xs:enumeration value="Zurich North America"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="name_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="phone_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="10"/>
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="state_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="2"/>
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="zip_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="addr_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="bathrooms_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="1 1/2"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="2 1/2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="3 1/2"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="4 1/2"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="5 1/2"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="6 1/2"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="7 1/2"/>
+			<xs:enumeration value="8+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="bedrooms_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="city_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claim_month">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="January"/>
+			<xs:enumeration value="February"/>
+			<xs:enumeration value="March"/>
+			<xs:enumeration value="April"/>
+			<xs:enumeration value="May"/>
+			<xs:enumeration value="June"/>
+			<xs:enumeration value="July"/>
+			<xs:enumeration value="August"/>
+			<xs:enumeration value="September"/>
+			<xs:enumeration value="October"/>
+			<xs:enumeration value="November"/>
+			<xs:enumeration value="December"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claim_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Weather"/>
+			<xs:enumeration value="Theft"/>
+			<xs:enumeration value="Vandalism"/>
+			<xs:enumeration value="Fire"/>
+			<xs:enumeration value="Water"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claim_year">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2008"/>
+			<xs:enumeration value="2007"/>
+			<xs:enumeration value="2006"/>
+			<xs:enumeration value="2005"/>
+			<xs:enumeration value="2004"/>
+			<xs:enumeration value="2003"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claims_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="credit_history_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Excellent"/>
+			<xs:enumeration value="Good"/>
+			<xs:enumeration value="Fair"/>
+			<xs:enumeration value="Poor"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="deductible_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="$100"/>
+			<xs:enumeration value="$250"/>
+			<xs:enumeration value="$500"/>
+			<xs:enumeration value="$1,000"/>
+			<xs:enumeration value="$2,000"/>
+			<xs:enumeration value="$2,500"/>
+			<xs:enumeration value="$5,000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dwelling_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Single Family"/>
+			<xs:enumeration value="Duplex"/>
+			<xs:enumeration value="Multi Family"/>
+			<xs:enumeration value="Townhome"/>
+			<xs:enumeration value="Condominium"/>
+			<xs:enumeration value="Mobile Home"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fireplaces_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="foundation_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Basement Less Than 50% Finished"/>
+			<xs:enumeration value="Basement More Than 50% Finished"/>
+			<xs:enumeration value="Crawl Space"/>
+			<xs:enumeration value="Open (Cement Non-Solid)"/>
+			<xs:enumeration value="Piers, Pilings or Stilts"/>
+			<xs:enumeration value="Slab (Cement Solid)"/>
+			<xs:enumeration value="Other / Not Sure"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="garage_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No Garage"/>
+			<xs:enumeration value="Carport"/>
+			<xs:enumeration value="Attached - 1 Car"/>
+			<xs:enumeration value="Attached - 2 Cars"/>
+			<xs:enumeration value="Attached - 3 Cars"/>
+			<xs:enumeration value="Not Attached - 1 Car"/>
+			<xs:enumeration value="Not Attached - 2 Cars"/>
+			<xs:enumeration value="Not Attached - 3 Cars"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="how_long_ins_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Less than 1 Month"/>
+			<xs:enumeration value="Less than 6 Months"/>
+			<xs:enumeration value="6 Months - 1 Year"/>
+			<xs:enumeration value="1 - 3 Years"/>
+			<xs:enumeration value="3 - 5 Years"/>
+			<xs:enumeration value="5+ Years"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="liability_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="$50,000"/>
+			<xs:enumeration value="$100,000"/>
+			<xs:enumeration value="$200,000"/>
+			<xs:enumeration value="$300,000"/>
+			<xs:enumeration value="$400,000"/>
+			<xs:enumeration value="$500,000"/>
+			<xs:enumeration value="$1,000,000+"/>
+			<xs:enumeration value="Not Sure"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="property_addr_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="property_city_type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="security_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="Yes, With Monitoring Company"/>
+			<xs:enumeration value="Yes, A Home-only System"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="squarefeet_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="100 - 500"/>
+			<xs:enumeration value="500 - 1000"/>
+			<xs:enumeration value="1000 - 1500"/>
+			<xs:enumeration value="1500 - 2000"/>
+			<xs:enumeration value="2000 - 2500"/>
+			<xs:enumeration value="2500 - 3000"/>
+			<xs:enumeration value="3000 - 3500"/>
+			<xs:enumeration value="3500 - 4000"/>
+			<xs:enumeration value="4000 - 4500"/>
+			<xs:enumeration value="4500 - 5000"/>
+			<xs:enumeration value="5000 - 5500"/>
+			<xs:enumeration value="5500 - 6000"/>
+			<xs:enumeration value="6000 - 6500"/>
+			<xs:enumeration value="6500 - 7000"/>
+			<xs:enumeration value="7000 - 7500"/>
+			<xs:enumeration value="7500+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="stories_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="1 1/2"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4+"/>
+			<xs:enumeration value="Bi-Level"/>
+			<xs:enumeration value="Tri-Level"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="year_built_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2008"/>
+			<xs:enumeration value="2007"/>
+			<xs:enumeration value="2006"/>
+			<xs:enumeration value="2005"/>
+			<xs:enumeration value="2004"/>
+			<xs:enumeration value="2003"/>
+			<xs:enumeration value="2002"/>
+			<xs:enumeration value="2001"/>
+			<xs:enumeration value="2000"/>
+			<xs:enumeration value="1999"/>
+			<xs:enumeration value="1998"/>
+			<xs:enumeration value="1997"/>
+			<xs:enumeration value="1996"/>
+			<xs:enumeration value="1995"/>
+			<xs:enumeration value="1994"/>
+			<xs:enumeration value="1993"/>
+			<xs:enumeration value="1992"/>
+			<xs:enumeration value="1991"/>
+			<xs:enumeration value="1990"/>
+			<xs:enumeration value="1989"/>
+			<xs:enumeration value="1988"/>
+			<xs:enumeration value="1987"/>
+			<xs:enumeration value="1986"/>
+			<xs:enumeration value="1985"/>
+			<xs:enumeration value="1984"/>
+			<xs:enumeration value="1983"/>
+			<xs:enumeration value="1982"/>
+			<xs:enumeration value="1981"/>
+			<xs:enumeration value="1980"/>
+			<xs:enumeration value="1979"/>
+			<xs:enumeration value="1978"/>
+			<xs:enumeration value="1977"/>
+			<xs:enumeration value="1976"/>
+			<xs:enumeration value="1975"/>
+			<xs:enumeration value="1974"/>
+			<xs:enumeration value="1973"/>
+			<xs:enumeration value="1972"/>
+			<xs:enumeration value="1971"/>
+			<xs:enumeration value="1970"/>
+			<xs:enumeration value="1969"/>
+			<xs:enumeration value="1968"/>
+			<xs:enumeration value="1967"/>
+			<xs:enumeration value="1966"/>
+			<xs:enumeration value="1965"/>
+			<xs:enumeration value="1964"/>
+			<xs:enumeration value="1963"/>
+			<xs:enumeration value="1962"/>
+			<xs:enumeration value="1961"/>
+			<xs:enumeration value="1960"/>
+			<xs:enumeration value="1959"/>
+			<xs:enumeration value="1958"/>
+			<xs:enumeration value="1957"/>
+			<xs:enumeration value="1956"/>
+			<xs:enumeration value="1955"/>
+			<xs:enumeration value="1954"/>
+			<xs:enumeration value="1953"/>
+			<xs:enumeration value="1952"/>
+			<xs:enumeration value="1951"/>
+			<xs:enumeration value="1950"/>
+			<xs:enumeration value="1949"/>
+			<xs:enumeration value="1948"/>
+			<xs:enumeration value="1947"/>
+			<xs:enumeration value="1946"/>
+			<xs:enumeration value="1945"/>
+			<xs:enumeration value="1944"/>
+			<xs:enumeration value="1943"/>
+			<xs:enumeration value="1942"/>
+			<xs:enumeration value="1941"/>
+			<xs:enumeration value="1940"/>
+			<xs:enumeration value="1939"/>
+			<xs:enumeration value="1938"/>
+			<xs:enumeration value="1937"/>
+			<xs:enumeration value="1936"/>
+			<xs:enumeration value="1935"/>
+			<xs:enumeration value="1934"/>
+			<xs:enumeration value="1933"/>
+			<xs:enumeration value="1932"/>
+			<xs:enumeration value="1931"/>
+			<xs:enumeration value="1930"/>
+			<xs:enumeration value="1929"/>
+			<xs:enumeration value="1928"/>
+			<xs:enumeration value="1927"/>
+			<xs:enumeration value="1926"/>
+			<xs:enumeration value="1925"/>
+			<xs:enumeration value="1924"/>
+			<xs:enumeration value="1923"/>
+			<xs:enumeration value="1922"/>
+			<xs:enumeration value="1921"/>
+			<xs:enumeration value="1920"/>
+			<xs:enumeration value="1919"/>
+			<xs:enumeration value="1918"/>
+			<xs:enumeration value="1917"/>
+			<xs:enumeration value="1916"/>
+			<xs:enumeration value="1915"/>
+			<xs:enumeration value="1914"/>
+			<xs:enumeration value="1913"/>
+			<xs:enumeration value="1912"/>
+			<xs:enumeration value="1911"/>
+			<xs:enumeration value="1910"/>
+			<xs:enumeration value="1909"/>
+			<xs:enumeration value="1908"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="years_prev_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Less Than 1 Year"/>
+			<xs:enumeration value="1 Year"/>
+			<xs:enumeration value="2 Years"/>
+			<xs:enumeration value="3 Years"/>
+			<xs:enumeration value="4 Years"/>
+			<xs:enumeration value="5 or More Years"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="years_resident_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Less Than 1 Year"/>
+			<xs:enumeration value="1 Year"/>
+			<xs:enumeration value="2 Years"/>
+			<xs:enumeration value="3 Years"/>
+			<xs:enumeration value="4 Years"/>
+			<xs:enumeration value="5 or More Years"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
