@@ -1,4 +1,8 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://leads.insuranceagents.com"
+  xmlns="http://leads.insuranceagents.com"
+  elementFormDefault="unqualified">
 	<xs:element name="lead_auto" type="lead_auto_record"/>
 	<xs:complexType name="lead_auto_record">
 		<xs:sequence>
